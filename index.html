@@ -11,15 +11,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0d0d0b;
-    --bg2: #141412;
-    --bg3: #1a1a17;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #f0ede6;
-    --muted: #8a8880;
-    --accent: #c9a96e;
-    --accent2: #e8c98a;
+    /* Light Mode Palette */
+    --bg: #ffffff;
+    --bg2: #f8f9fa;
+    --bg3: #f1f5f9;
+    --border: #e2e8f0;
+    --border2: #cbd5e1;
+    --text: #0f172a;
+    --muted: #475569;
+    
+    /* High-Conversion B2B Blue */
+    --accent: #2563eb; 
+    --accent2: #1d4ed8;
+    --accent-rgba: 37, 99, 235;
+
     --serif: 'Fraunces', Georgia, serif;
     --sans: 'Outfit', sans-serif;
   }
@@ -44,7 +49,7 @@
     z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.25rem 5vw;
-    background: rgba(13,13,11,0.85);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
@@ -52,7 +57,7 @@
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.25rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.01em;
     color: var(--text);
   }
@@ -64,12 +69,15 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
-    border: 1px solid rgba(201,169,110,0.35);
+    border: 1px solid rgba(var(--accent-rgba), 0.35);
     padding: 0.5rem 1.1rem;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: background 0.2s, border-color 0.2s;
   }
-  .nav-cta:hover { background: rgba(201,169,110,0.1); border-color: var(--accent); }
+  .nav-cta:hover { 
+    background: rgba(var(--accent-rgba), 0.05); 
+    border-color: var(--accent); 
+  }
 
   /* HERO */
   .hero {
@@ -89,7 +97,7 @@
     position: absolute;
     top: -200px; right: -200px;
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--accent-rgba), 0.06) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -100,16 +108,17 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    border: 1px solid rgba(201,169,110,0.3);
+    background: rgba(var(--accent-rgba), 0.05);
+    border: 1px solid rgba(var(--accent-rgba), 0.2);
     padding: 0.35rem 0.85rem;
-    border-radius: 2px;
+    border-radius: 4px;
     margin-bottom: 2rem;
   }
 
   .hero-headline {
     font-family: var(--serif);
     font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.01em;
     color: var(--text);
@@ -117,11 +126,11 @@
   }
   .hero-headline em {
     font-style: italic;
-    color: var(--accent2);
+    color: var(--accent);
   }
 
   .hero-sub {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--muted);
     line-height: 1.75;
     max-width: 480px;
@@ -132,54 +141,55 @@
 
   .btn-primary {
     background: var(--accent);
-    color: #0d0d0b;
+    color: #ffffff;
     font-family: var(--sans);
     font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    padding: 0.8rem 1.6rem;
-    border-radius: 2px;
-    transition: background 0.2s;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    padding: 0.9rem 1.8rem;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 6px -1px rgba(var(--accent-rgba), 0.2);
   }
-  .btn-primary:hover { background: var(--accent2); }
+  .btn-primary:hover { 
+    background: var(--accent2); 
+    transform: translateY(-1px);
+  }
 
   .btn-ghost {
-    font-size: 0.85rem;
-    font-weight: 400;
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--muted);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     border-bottom: 1px solid var(--border2);
     padding-bottom: 2px;
     transition: color 0.2s, border-color 0.2s;
   }
   .btn-ghost:hover { color: var(--text); border-color: var(--text); }
 
-  .hero-right { display: flex; flex-direction: column; gap: 1px; }
+  .hero-right { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;}
 
   .stat-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 1.75rem 2rem;
+    background: var(--bg);
+    padding: 2rem;
     position: relative;
-    transition: border-color 0.2s;
+    transition: background 0.2s;
   }
-  .stat-card:first-child { border-radius: 4px 4px 0 0; }
-  .stat-card:last-child { border-radius: 0 0 4px 4px; }
-  .stat-card:hover { border-color: rgba(201,169,110,0.25); }
+  .stat-card:hover { background: var(--bg2); }
 
   .stat-num {
     font-family: var(--serif);
     font-size: 3rem;
-    font-weight: 300;
-    color: var(--accent2);
+    font-weight: 400;
+    color: var(--accent);
     line-height: 1;
     margin-bottom: 0.5rem;
   }
   .stat-label {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--muted);
     line-height: 1.5;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   /* SECTIONS */
@@ -187,7 +197,7 @@
 
   .section-tag {
     font-size: 0.7rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
@@ -197,15 +207,15 @@
   .section-title {
     font-family: var(--serif);
     font-size: clamp(1.9rem, 3vw, 2.8rem);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.2;
     color: var(--text);
     margin-bottom: 1.5rem;
   }
-  .section-title em { font-style: italic; color: var(--accent2); }
+  .section-title em { font-style: italic; color: var(--accent); }
 
   .section-sub {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--muted);
     line-height: 1.8;
     max-width: 600px;
@@ -217,9 +227,9 @@
   .problem-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
 
   .problem-list li {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--muted);
-    padding: 1rem 0 1rem 1.5rem;
+    padding: 1.25rem 0 1.25rem 1.75rem;
     border-bottom: 1px solid var(--border);
     position: relative;
     transition: color 0.2s;
@@ -231,7 +241,7 @@
     position: absolute;
     left: 0; top: 50%;
     transform: translateY(-50%);
-    width: 5px; height: 5px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--border2);
     transition: background 0.2s;
@@ -242,7 +252,7 @@
   .problem-closing {
     font-family: var(--serif);
     font-size: 1.3rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
     color: var(--text);
     font-style: italic;
@@ -259,17 +269,17 @@
     margin-top: 4rem;
     background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
   }
 
   .step {
-    background: var(--bg2);
+    background: var(--bg);
     padding: 2.5rem 2rem;
     position: relative;
     transition: background 0.2s;
   }
-  .step:hover { background: var(--bg3); }
+  .step:hover { background: var(--bg2); }
 
   .step-num {
     font-family: var(--serif);
@@ -280,12 +290,12 @@
     margin-bottom: 1.5rem;
     transition: color 0.2s;
   }
-  .step:hover .step-num { color: rgba(201,169,110,0.3); }
+  .step:hover .step-num { color: rgba(var(--accent-rgba), 0.4); }
 
   .step-badge {
     display: inline-block;
     font-size: 0.65rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
@@ -294,15 +304,15 @@
 
   .step-title {
     font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 400;
+    font-size: 1.2rem;
+    font-weight: 500;
     color: var(--text);
     margin-bottom: 1rem;
     line-height: 1.3;
   }
 
   .step-desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--muted);
     line-height: 1.7;
   }
@@ -310,13 +320,13 @@
   .step-free {
     display: inline-block;
     font-size: 0.65rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: rgba(201,169,110,0.12);
+    background: rgba(var(--accent-rgba), 0.1);
     color: var(--accent);
-    padding: 0.25rem 0.6rem;
-    border-radius: 2px;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
     margin-top: 1rem;
   }
 
@@ -327,44 +337,45 @@
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     margin-top: 3.5rem;
   }
 
   .who-card {
-    background: var(--bg2);
+    background: var(--bg);
     padding: 2.5rem 2rem;
     transition: background 0.2s;
   }
-  .who-card:hover { background: var(--bg3); }
+  .who-card:hover { background: var(--bg2); }
 
   .who-card h3 {
     font-family: var(--serif);
-    font-size: 1.15rem;
-    font-weight: 400;
+    font-size: 1.25rem;
+    font-weight: 500;
     color: var(--text);
     margin-bottom: 1rem;
   }
 
   .who-card p {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     color: var(--muted);
     line-height: 1.75;
   }
 
   .who-detail {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
     color: var(--accent);
     margin-top: 1rem;
     letter-spacing: 0.03em;
-    opacity: 0.8;
   }
 
   /* CTA */
   .cta-section {
     text-align: center;
     padding: 8rem 5vw;
+    background: var(--bg2);
   }
 
   .cta-section .section-title {
@@ -390,22 +401,22 @@
     align-items: center;
     gap: 0.75rem;
     font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: var(--accent2);
-    border-bottom: 1px solid rgba(232,201,138,0.3);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--accent);
+    border-bottom: 2px solid rgba(var(--accent-rgba), 0.2);
     padding-bottom: 4px;
     transition: border-color 0.2s, color 0.2s;
     letter-spacing: 0.01em;
   }
-  .email-link:hover { border-color: var(--accent2); color: var(--text); }
+  .email-link:hover { border-color: var(--accent); color: var(--accent2); }
 
   .email-hint {
-    font-size: 0.7rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--border2);
+    color: var(--muted);
   }
 
   /* FOOTER */
@@ -416,19 +427,20 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
+    background: var(--bg);
   }
 
   .footer-logo {
     font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--muted);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
   }
   .footer-logo span { color: var(--accent); }
 
   .footer-copy {
-    font-size: 0.75rem;
-    color: var(--border2);
+    font-size: 0.85rem;
+    color: var(--muted);
     letter-spacing: 0.03em;
   }
 
@@ -439,9 +451,7 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; padding-top: 7rem; }
-    .hero-right { flex-direction: row; gap: 1px; }
-    .stat-card:first-child { border-radius: 4px 0 0 4px; }
-    .stat-card:last-child { border-radius: 0 4px 4px 0; }
+    .hero-right { flex-direction: row; }
     .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     .who-grid { grid-template-columns: 1fr; }
@@ -449,21 +459,17 @@
 
   @media (max-width: 580px) {
     .hero-right { flex-direction: column; }
-    .stat-card:first-child { border-radius: 4px 4px 0 0; }
-    .stat-card:last-child { border-radius: 0 0 4px 4px; }
     .process-steps { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Tier<span>a</span>list</a>
   <a href="mailto:dalo@tieralist.com" class="nav-cta">Claim Free Audit →</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-tag">DTC Customer Retention Analytics</div>
@@ -472,7 +478,6 @@
       acquisition numbers.<br />
       <em>What are your existing<br />customers worth to you?</em>
     </h1>
-    <!-- CHANGED: Outcome-first language. States what the client gets, not what we do. Ends on the free audit as the entry point. -->
     <p class="hero-sub">
       Tieralist identifies which customers are worth keeping, which are quietly slipping away, and what it's actually costing you. Then we build the retention system to stop the leak — starting with a free audit.
     </p>
@@ -498,12 +503,10 @@
   </div>
 </section>
 
-<!-- PROBLEM -->
 <section class="reveal">
   <div class="section-tag">The Problem</div>
   <div class="section-title">Most DTC brands have<br />an email automation account.<br /><em>Not a retention strategy.</em></div>
   <div class="problem-inner">
-    <!-- CHANGED: Trimmed from 6 to 4 bullets. Removed two redundant points ("Klaviyo flows built once" overlapped with the broadcast point; "LTV as vanity metrics" overlapped with the 20/60 point). What remains is sharper and more distinct. -->
     <ul class="problem-list">
       <li>Broadcasting the same email to every customer regardless of how recently or how often they buy</li>
       <li>No visibility into which customers are about to churn until they already have</li>
@@ -514,7 +517,6 @@
       <p class="section-sub">
         Most retention problems aren't caused by bad products or weak offers. They're caused by not knowing which customers to prioritize, what to say to them, and when to say it.
       </p>
-      <!-- CHANGED: Old quote was generic ("spending more / know their customers better"). New version names a specific behaviour — "running more campaigns" vs. knowing who to talk to. More concrete, more credible. -->
       <p class="problem-closing">
         "The brands winning on retention aren't running more campaigns — they know exactly who to talk to and when."
       </p>
@@ -522,7 +524,6 @@
   </div>
 </section>
 
-<!-- PROCESS -->
 <section id="process" class="reveal">
   <div class="section-tag">How It Works</div>
   <div class="section-title">From raw data<br />to a working retention system</div>
@@ -544,7 +545,6 @@
       <div class="step-num">03</div>
       <div class="step-badge">Execution</div>
       <div class="step-title">Klaviyo Build-Out</div>
-      <!-- CHANGED: Fixed typographic bug — period was incorrectly splitting the sentence before "flows". Now uses an em dash for correct flow. -->
       <p class="step-desc">The strategy gets translated directly into Klaviyo — flows, segments, and campaign sequences built around actual customer behavior, not guesswork.</p>
     </div>
     <div class="step">
@@ -556,7 +556,6 @@
   </div>
 </section>
 
-<!-- WHO -->
 <section class="who reveal">
   <div class="section-tag">Who We Work With</div>
   <div class="section-title">Built for DTC brands<br />where repeat purchases matter.</div>
@@ -573,18 +572,15 @@
     </div>
     <div class="who-card">
       <h3>Pet Products</h3>
-      <!-- CHANGED: Fixed awkward sentence structure. Old version had a comma splice and an odd rhythm. New version is two clean sentences. -->
       <p>Emotionally connected customers with strong repeat potential. Most pet brands are sitting on a loyal base they're barely engaging — and that's a straightforward problem to fix.</p>
       <p class="who-detail">Food · Treats · Supplements · Accessories</p>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section reveal">
   <div class="section-tag">Get Started</div>
   <h2 class="section-title">See what's actually<br />in <em>your</em> customer data.</h2>
-  <!-- CHANGED: Old copy described the process ("send us a message, we'll be back with a plan"). New copy leads with what the prospect gets from the audit — a clear, specific outcome in 24 hours. -->
   <p class="section-sub">The audit is free. In 24 hours, you'll know exactly where your customer base is leaking revenue — and what to do about it.</p>
   <div class="email-wrap">
     <a href="mailto:dalo@tieralist.com" class="email-link">
@@ -594,7 +590,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Tier<span>a</span>list</div>
   <div class="footer-copy">© 2026 Tieralist · E-Commerce Customer Retention</div>
